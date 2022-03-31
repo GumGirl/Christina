@@ -51,7 +51,7 @@ var main = function (input) {
       }
     }
   };
-  console.log(compare(userChoice, computerChoice));
+  console.log(compare(computerChoice, userChoice));
 
   var myOutputValue = compare(computerChoice, userChoice);
   return myOutputValue;

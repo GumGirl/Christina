@@ -1,31 +1,111 @@
-var secretWordBaseMain = function (input) {
+var numCorrectGuessesNeededToWin = 2;
+var numCorrectGuessesSoFar = 0;
+
+// Randomly return one of banana, chisel or faucet.
+var generateSecretWord = function () {
+  // Generate random number between 1 and 3
+  var numPossibleWords = 3;
+  var randomNum = Math.floor(Math.random() * numPossibleWords) + 1;
+
+  // Return the word that corresponds to the relevant number
+  if (randomNum == 1) {
+    return `banana`;
+  }
+  if (randomNum == 2) {
+    return `chisel`;
+  }
+  return `faucet`;
+};
+
+var secretWordBaseMain = function (guessedWord) {
   // Complete the Base: Secret Word exercise below with secretWordBaseMain as the main function.
-
-  // 3 secret words
-  var secretWord1 = "banana";
-  var secretWord2 = "chisel";
-  var secretWord3 = "fauset";
-
-  var userSecretWord = input;
-
-  //Random word generator
-  var randomWord = Math.floor(Math.random() * 3) + 1;
-
-  var compareSecretWord = function (word1, word2) {};
-  var myOutputValue = "hello world";
-  return myOutputValue;
+  var secretWord = generateSecretWord();
+  var standardMessage = `You guessed: ${guessedWord}. Secret word: ${secretWord}.`;
+  if (secretWord == guessedWord) {
+    numCorrectGuessesSoFar += 1;
+    if (numCorrectGuessesSoFar >= numCorrectGuessesNeededToWin) {
+      numCorrectGuessesSoFar = 0;
+      return `${standardMessage} You guessed twice correctly. You win! Please play again.`;
+    }
+    return `${standardMessage} You guessed correctly. You win! Please play again.`;
+  }
+  var numCorrectGuessesRemainingToWin =
+    numCorrectGuessesNeededToWin - numCorrectGuessesSoFar;
+  return `${standardMessage} You guessed incorrectly. You need ${numCorrectGuessesNeededToWin} more correct guesses to win.`;
 };
 
-var secretWordTwiceRowMain = function (input) {
+// Secret Word Twice in a Row
+
+var secretWordTwiceRowMain = function (guessedWord) {
   // Complete the Comfortable: Secret Word Twice in a Row exercise below with secretWordTwiceRowMain as the main function.
-  var myOutputValue = "hello world";
-  return myOutputValue;
+  var secretWord = generateSecretWord();
+  var standardMessage = `You guessed: ${guessedWord}. Secret word: ${secretWord}.`;
+
+  // Guess is correct
+  if (secretWord == guessedWord) {
+    numCorrectGuessesSoFar += 1;
+
+    if (numCorrectGuessesSoFar >= numCorrectGuessesNeededToWin) {
+      // Reset counter of correct guesses to restart game.
+      numCorrectGuessesSoFar = 0;
+      return `${standardMessage} You guessed correctly ${numCorrectGuessesNeededToWin} times in a row. You win! Please play again.`;
+    }
+
+    var numCorrectGuessesRemainingToWin =
+      numCorrectGuessesNeededToWin - numCorrectGuessesSoFar;
+
+    return `${standardMessage} You guessed correct! You need ${numCorrectGuessesRemainingToWin} more correct guess to win.`;
+  }
+  // Guess is incorrect
+  // Reset counter of correct guesses to 0 to implement twice in a row rule.
+  numCorrectGuessesSoFar = 0;
+  return `${standardMessage} You guessed incorrectly. You need ${numCorrectGuessesNeededToWin} more correct guesses to win.`;
 };
 
-var secretWordXRowMain = function (input) {
+// Secret word X in a Row
+
+// Initialise isStartofRound to true to generate numCorrectGuessesNeededToWin
+var isStartOfRound = true;
+
+// Generate random number between 2 and 4
+var generateNumCorrectGuessThreshold = function () {
+  return Math.floor(Math.random() * 3) + 2;
+};
+
+var secretWordXRowMain = function (guessedWord) {
   // Complete the Comfortable: Secret Word X in a Row exercise below with secretWordXRowMain as the main function.
-  var myOutputValue = "hello world";
-  return myOutputValue;
+
+  // If start of round, re-generate num correct guesses needed to win.
+  if (isStartOfRound) {
+    numCorrectGuessesNeededToWin = generateNumCorrectGuessThreshold();
+    // Set isStartOfRound to false until start of next round.
+    isStartOfRound = false;
+  }
+
+  // Generate secret world without repeats
+  var secretWord = generateSecretWord();
+  var standardMessage = `You guessed: ${guessedWord}. Secret word: ${secretWord}. `;
+
+  // Guess is correct
+  if (secretWord == guessedWord) {
+    // Use numCorrectGuessesSoFar and numCorrectGuessesNeededToWin variables from prev exercise.
+    numCorrectGuessesSoFar += 1;
+    if (numCorrectGuessesSoFar >= numCorrectGuessesNeededToWin) {
+      // Reset counter of correct guesses to restart game.
+      numCorrectGuessesSoFar = 0;
+      // Reset isStartOfRound to true to generate new num correct guesses threshold the next round.
+      isStartOfRound = true;
+      return `${standardMessage} You guessed correctly ${numCorrectGuessesNeededToWin} times in a row. You win! Please play again.`;
+    }
+    var numCorrectGuessesRemainingToWin =
+      numCorrectGuessesNeededToWin - numCorrectGuessesSoFar;
+    return `${standardMessage} You guessed correctly! You need ${numCorrectGuessesRemainingToWin} more correct guess to win.`;
+  }
+
+  // Guess is incorrect
+  // Reset counter of correct guesses to 0 to implement X in a row rule.
+  numCorrectGuessesSoFar = 0;
+  return `${standardMessage} You guessed incorrectly. You need ${numCorrectGuessesNeededToWin} more correct guesses to win.`;
 };
 
 /* 
@@ -67,18 +147,6 @@ var diceWithinMain = function (input) {
 
 var diceWithin2DiceMain = function (input) {
   // Complete the More Comfortable: Dice Within with 2 Dice exercise below with diceWithin2DiceMain as the main function.
-  var myOutputValue = "hello world";
-  return myOutputValue;
-};
-
-var dice4DMain = function (input) {
-  // Complete the More Comfortable: Dice 4D exercise below with dice4DeMain as the main function.
-  var myOutputValue = "hello world";
-  return myOutputValue;
-};
-
-var secretWordTwice2Main = function (input) {
-  // Complete the More Comfortable: Secret Word Twice in a Row 2 exercise below with secretWordTwice2Main as the main function.
   var myOutputValue = "hello world";
   return myOutputValue;
 };

@@ -1,6 +1,11 @@
 var main = function (input) {
   var userChoice = input;
 
+  // Initialise the number of player wins, computer wins, and draws to 0.
+  var numPlayerWins = 0;
+  var numComputerWins = 0;
+  var numDraws = 0;
+
   // Create a random generated Computer Choice results
   var computerChoice = Math.floor(Math.random() * 3) + 1;
 
@@ -54,5 +59,14 @@ var main = function (input) {
   console.log(compare(computerChoice, userChoice));
 
   var myOutputValue = compare(computerChoice, userChoice);
-  return myOutputValue;
+  return (
+    "The computer chose " +
+    computerChoice +
+    " and " +
+    myOutputValue +
+    "!" +
+    "<br> You chose " +
+    userChoice +
+    "."
+  );
 };

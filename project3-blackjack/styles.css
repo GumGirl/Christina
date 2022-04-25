@@ -10,6 +10,7 @@
 body {
   margin-top: 0;
   font-family: sans-serif;
+  text-align: center;
   margin-left: 30px;
   margin-right: 30px;
   background-color: #e0e0e0;
@@ -52,17 +53,77 @@ nav ul li a {
   text-decoration: none;
 }
 
-#header {
+.container {
+  background-color: #ffffff;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.blackjack-row-1,
+.blackjack-row-2,
+.blackjack-row-3 {
+  display: flex;
+  padding: 5px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.blackjack-row-2 div {
+  padding: 10px;
+  flex: 1;
+  height: 350px;
   text-align: center;
 }
 
-.container {
-  background-color: #ffffff;
-  margin: 40px auto;
-  max-width: 800px;
-  padding: 38px 31px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+.blackjack-row-2 img {
+  padding: 10px;
+  object-fit: contain;
+}
+
+.blackjack-row-3 div {
+  padding: 10px;
+}
+
+.blackjack-row-3 div button {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+table,
+th,
+td {
+  padding: 5px;
+  border: 1px solid white;
+  align-items: center;
+  text-align: center;
+}
+
+#win-header {
+  color: blue;
+}
+
+#loss-header {
+  color: red;
+}
+
+#draw-header {
+  color: green;
+}
+
+#your-box img {
+  height: 140px;
+  width: 100px;
+  margin: 0px;
+}
+
+#dealer-box img {
+  height: 140px;
+  width: 100px;
+  margin: 0px;
 }
 
 input {
@@ -74,10 +135,10 @@ input {
 }
 
 button {
-  font-size: 21px;
-  line-height: 33px;
-  margin: 0 0 23px 0;
-  padding: 0 6px;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 0 0 16px 0;
+  padding: 0 2px;
 }
 
 .output-div {
